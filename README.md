@@ -3,7 +3,7 @@
 ### Installation
 
 ```
-git clone
+git clone git@github.com:tSho0418/My-BBs.git
 cd next-app
 npm i
 ```
