@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function Bubble({
   x,
@@ -73,6 +74,8 @@ export default function FloatingBubblesBackground({
 }) {
   const router = useRouter();
 
+  const { data: session } = useSession();
+
   async function handleButtonClick() {
     const response = await fetch("/api/BBS-posts", {
       method: "GET",
@@ -129,7 +132,7 @@ export default function FloatingBubblesBackground({
                        overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
             <Button
-              onClick={handleButtonClick}
+              onClick={() => signIn("google")}
               variant="ghost"
               className="rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md 
                          bg-white/80 hover:bg-white/90 dark:bg-black/80 dark:hover:bg-black/90 
@@ -138,7 +141,7 @@ export default function FloatingBubblesBackground({
                          hover:shadow-md dark:hover:shadow-blue-900/30"
             >
               <span className="opacity-90 group-hover:opacity-100 transition-opacity">
-                Go To Talk !
+                Googleで開始
               </span>
               <span
                 className="ml-3 opacity-70 group-hover:opacity-100 group-hover:translate-x-1.5 
