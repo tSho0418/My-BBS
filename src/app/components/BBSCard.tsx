@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { BBSData } from "../types/types";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const BBSCard = ({
   post,
@@ -13,6 +14,7 @@ const BBSCard = ({
   post: BBSData;
   onPostDelete: () => Promise<void>;
 }) => {
+  const {data: session} = useSession();
   const router = useRouter();
   const handleDelete = async (id: number) => {
     const response = await fetch("/api/BBS-posts", {
@@ -32,14 +34,20 @@ const BBSCard = ({
     <div>
       <Card>
         <CardContent>
-          {post.content}
+          <p>{post.userName}@{post.email}</p>
+          <div className="text-xl font-bold">
+            {post.content}
+          </div>
+          
           <div className="flex justify-end">
-            <Button
-              onClick={() => handleDelete(post.id)}
-              className="text-white "
-            >
-              削除
-            </Button>
+            {session?.user?.email === post.email && (
+              <Button
+                onClick={() => handleDelete(post.id)}
+                className="text-white "
+              >
+                削除
+              </Button>
+            )}
           </div>
         </CardContent>
       </Card>
