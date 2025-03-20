@@ -3,8 +3,12 @@ import sequelize from "../../config/database";
 import { v4 as uuidv4 } from "uuid";
 
 class Post extends Model {
-  public id!: number;
+  public id!: string;
   public content!: string;
+  public userName!: string;
+  public email!: string;
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
 }
 
 Post.init(
@@ -16,6 +20,14 @@ Post.init(
       defaultValue: uuidv4,
     },
     content: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    userName: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
     },
