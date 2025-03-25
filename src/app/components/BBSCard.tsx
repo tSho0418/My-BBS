@@ -29,12 +29,20 @@ const BBSCard = ({
     } else {
       console.error("Failed to fetch");
     }
+    
   };
+
+  const formatDate = (date: Date | string) => {
+    const d = typeof date === "string" ? new Date(date) : date;
+    return d.toLocaleDateString('ja-JP') + " " + d.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+  };
+
+
   return (
     <div>
       <Card>
         <CardContent>
-          <p>{post.userName}  {post.createdAt}</p>
+          <p>{post.userName}  {formatDate(post.createdAt)}</p>
           <div className="text-xl font-bold">
             {post.content}
           </div>

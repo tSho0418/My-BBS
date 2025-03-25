@@ -53,10 +53,15 @@ const Posts = () => {
         <BottomSearchBar />
         <PostForm onPostCreated={getPosts} />
         {loading ? (
-          <p>Loading...</p>
+          <main className="flex min-h-screen flex-col items-center justify-center bg-white">
+            <div className="flex flex-col items-center gap-4 ">
+              <LoadingDots />
+              <p className="mt-4 text-sm font-medium text-black">読み込み中...</p>
+            </div>
+          </main>
         ) : (
           posts.length !== 0 ? 
-          <BBSCardList posts={posts} onPostDelete={getPosts} /> : <p>結果がありません</p>
+          <BBSCardList posts={posts} onPostDelete={getPosts} /> : <p className="flex min-h-screen flex-col items-center justify-center bg-white">投稿がありません</p>
         )}
       </main>
       ):(
