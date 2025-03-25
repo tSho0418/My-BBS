@@ -3,8 +3,8 @@
 ### Installation
 
 ```
-git clone git@github.com:tSho0418/My-BBs.git
-cd My-BBs
+git clone git@github.com:tSho0418/My-BBS.git
+cd My-BBS
 npm i
 ```
 
