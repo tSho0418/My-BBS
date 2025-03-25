@@ -34,7 +34,7 @@ const BBSCard = ({
     <div>
       <Card>
         <CardContent>
-          <p>{post.userName}@{post.email}</p>
+          <p>{post.userName}  {post.createdAt}</p>
           <div className="text-xl font-bold">
             {post.content}
           </div>

@@ -5,6 +5,7 @@ import FloatingBubblesBackground from "./components/Floating-bubbles";
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useEffect } from "react";
+import LoadingDots from "./components/loadings/Loading";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -31,7 +32,12 @@ export default function Home() {
   return (
     <div>
       {session ? (
-        <p>Loading...</p>
+        <main className="flex min-h-screen flex-col items-center justify-center bg-white">
+          <div className="flex flex-col items-center gap-4">
+            <LoadingDots />
+            <p className="mt-4 text-sm font-medium text-black">読み込み中...</p>
+          </div>
+        </main>
       ):(
         <FloatingBubblesBackground/>
       )}
